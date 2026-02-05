@@ -1,0 +1,521 @@
+{
+  "info": {
+    "_postman_id": "f3cd8271-652c-41c0-ab76-2fef1f78ebb3",
+    "name": "Full Stack Task Postman Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "23569739"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"test3@example.com\",\r\n    \"password\": \"Test@123\",\r\n    \"name\" : \"John Doe\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/register",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Register Response 1",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"test2@example.com\",\r\n    \"password\": \"Test@123\",\r\n    \"name\" : \"John Doe\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/auth/register",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "192"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"c0-1bRKzUFNQjdqj6fg4AEaK4WHlcU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 04 Feb 2026 15:32:34 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\n    \"id\": \"6571c319-6b05-481d-8b7d-8097dca2f6bc\",\n    \"email\": \"test2@example.com\",\n    \"password_hash\": \"$2b$10$4zwHF47vAoR4eCRtWKEdd.UoU6OFjR0SkRUD9d02uh1kY2OcZLbzK\",\n    \"created_at\": \"2026-02-04T10:02:34.905Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Make sure the request succeeded\r",
+                  "pm.test(\"Login response status is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "// Try to parse JSON response\r",
+                  "let jsonData;\r",
+                  "try {\r",
+                  "    jsonData = pm.response.json();\r",
+                  "} catch (e) {\r",
+                  "    pm.test(\"Response body is valid JSON\", function () {\r",
+                  "        throw new Error(\"Response is not valid JSON\");\r",
+                  "    });\r",
+                  "}\r",
+                  "\r",
+                  "// Adjust this path if your API wraps the token differently\r",
+                  "const token = jsonData.access_token;\r",
+                  "\r",
+                  "pm.test(\"Login response contains access_token\", function () {\r",
+                  "    pm.expect(token, \"access_token should be present\").to.be.a(\"string\").that.is.not.empty;\r",
+                  "});\r",
+                  "\r",
+                  "// Save token into active environment\r",
+                  "if (token) {\r",
+                  "    pm.environment.set(\"ACCESS_TOKEN\", token);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"test2@example.com\",\r\n    \"password\": \"Test@123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/login",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Login Response 1",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"test@example.com\",\r\n    \"password\": \"Test@123\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/auth/login",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "363"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"16b-G9tz8cjuTQ/zqOSlPCVE54YThyA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 04 Feb 2026 16:53:47 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJzdWIiOiJiOTJkMDE2Ny1lYzMxLTQ1OTMtYmM5MS1hZjIzNGRhOWYwOGEiLCJpYXQiOjE3NzAyMjQwMjcsImV4cCI6MTc3MDMxMDQyN30.ogcfzXDayU_kMYrUSSsc5reQzSGTnNH6X1R-mjwaqrA\",\n    \"user\": {\n        \"id\": \"b92d0167-ec31-4593-bc91-af234da9f08a\",\n        \"email\": \"test@example.com\",\n        \"created_at\": \"2026-02-04T09:53:25.078Z\"\n    }\n}"
+            },
+            {
+              "name": "Login Response 2",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"test2@example.com\",\r\n    \"password\": \"Test@123\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/auth/login",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "365"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"16d-6YklWstwboGC6rSY+CzmfE13gnY\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 04 Feb 2026 16:55:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGV4YW1wbGUuY29tIiwic3ViIjoiNjU3MWMzMTktNmIwNS00ODFkLThiN2QtODA5N2RjYTJmNmJjIiwiaWF0IjoxNzcwMjI0MTE2LCJleHAiOjE3NzAzMTA1MTZ9.t197qb8hGClzCvwQ143WzSAqi-rZyoEbPRuvpym82yk\",\n    \"user\": {\n        \"id\": \"6571c319-6b05-481d-8b7d-8097dca2f6bc\",\n        \"email\": \"test2@example.com\",\n        \"created_at\": \"2026-02-04T10:02:34.905Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{ACCESS_TOKEN}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/auth/logout",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User Details",
+      "item": [
+        {
+          "name": "Logged In User Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{ACCESS_TOKEN}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/users/me",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "users",
+                "me"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "User Details Response 1",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{ACCESS_TOKEN}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{BASE_URL}}/me",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "me"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "112"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"70-Knji8iyklqVeQqTFWD+46gbwiq8\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 04 Feb 2026 16:53:52 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"b92d0167-ec31-4593-bc91-af234da9f08a\",\n    \"email\": \"test@example.com\",\n    \"created_at\": \"2026-02-04T09:53:25.078Z\"\n}"
+            },
+            {
+              "name": "User Details Response 2",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{ACCESS_TOKEN}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{BASE_URL}}/me",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "me"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "113"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"71-dKkDj2CvSp8nAl7HpJiuy1eEub0\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 04 Feb 2026 16:55:42 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"6571c319-6b05-481d-8b7d-8097dca2f6bc\",\n    \"email\": \"test2@example.com\",\n    \"created_at\": \"2026-02-04T10:02:34.905Z\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": ""
+    },
+    {
+      "key": "ACCESS_TOKEN",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}
