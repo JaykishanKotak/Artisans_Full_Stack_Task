@@ -71,3 +71,103 @@ export default defineConfig([
   },
 ]);
 ```
+
+## 🚀 Quick Start
+
+### 1. Install Dependencies
+
+Navigate to the project directory and install all required dependencies:
+
+```bash
+npm install
+```
+
+Or if you prefer yarn:
+
+```bash
+yarn install
+```
+
+### 2. Run Development Server
+
+Start the development server with hot module replacement (HMR):
+
+```bash
+npm run dev
+```
+
+Or with yarn:
+
+```bash
+yarn dev
+```
+
+The application will be available at `http://localhost:5173`
+
+## 📦 Available Scripts
+
+### Development
+
+- **`npm run dev`** - Start the development server with HMR enabled
+- **`npm run preview`** - Preview the production build locally
+
+### Building
+
+- **`npm run build`** - Build the application for production (creates optimized bundle in `dist/` folder)
+
+### Code Quality
+
+- **`npm run lint`** - Check for linting errors
+- **`npm run lint:fix`** - Automatically fix linting errors
+- **`npm run lint:check`** - Check for linting errors without fixing
+
+### Code Formatting
+
+- **`npm run format`** - Format all code files with Prettier
+- **`npm run format:check`** - Check code formatting without making changes
+
+### Testing
+
+- **`npm run test`** - Run unit tests with Vitest
+
+## 🐳 Docker Setup
+
+The application can also be run using Docker:
+
+### Build Docker Image
+
+```bash
+docker build -t food-delivery-client .
+```
+
+### Run Docker Container
+
+```bash
+docker run -p 80:80 food-delivery-client
+```
+
+The application will be available at `http://localhost`
+
+## 🔧 Key Technologies
+
+- **React 19** - Modern UI library with latest features
+- **TypeScript** - Type-safe development
+- **Vite** - Ultra-fast build tool and dev server
+- **Redux Toolkit** - Predictable state management
+- **React Router v7** - Client-side routing
+- **Axios** - Promise-based HTTP client
+- **React Hook Form** - Performant form management
+- **Yup** - Schema validation
+- **Tailwind CSS** - Utility-first CSS framework
+- **Redux Persist** - Local storage persistence
+- **React Hot Toast** - Toast notifications
+- **Vitest** - Fast unit testing framework
+
+## 🌐 Environment Configuration
+
+The API endpoint is configured in [src/shared/api/config.ts](src/shared/api/config.ts). Update the API base URL if needed for different environments:
+
+```typescript
+// Example environment setup
+const API_URL = process.env.VITE_API_URL || 'http://localhost:5000/api';
+```
