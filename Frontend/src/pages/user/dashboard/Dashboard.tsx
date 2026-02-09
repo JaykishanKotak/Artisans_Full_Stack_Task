@@ -6,7 +6,7 @@ const DashboardPage = () => {
         You’re logged in. Use the navigation to explore the app.
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default DashboardPage
+export default DashboardPage;

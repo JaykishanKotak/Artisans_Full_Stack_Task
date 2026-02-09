@@ -1,12 +1,12 @@
 const API_ENDPOINTS = {
-AUTH: {
+  AUTH: {
     LOGIN: '/auth/login',
     LOGOUT: '/auth/logout',
     REGISTER: '/auth/register',
-},
-USER: {
+  },
+  USER: {
     MY_PROFILE: '/users/me',
-},
-}
+  },
+};
 
-export default API_ENDPOINTS
+export default API_ENDPOINTS;

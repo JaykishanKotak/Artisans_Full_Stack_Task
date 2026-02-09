@@ -1,4 +1,4 @@
-import * as yup from 'yup'
+import * as yup from 'yup';
 
 export const registerSchema = yup.object({
   name: yup.string().required('Name is required'),
@@ -14,6 +14,6 @@ export const registerSchema = yup.object({
     .string()
     .required('Confirm Password is required')
     .oneOf([yup.ref('password')], 'Passwords must match'),
-})
+});
 
-export type RegisterFormData = yup.InferType<typeof registerSchema>
+export type RegisterFormData = yup.InferType<typeof registerSchema>;

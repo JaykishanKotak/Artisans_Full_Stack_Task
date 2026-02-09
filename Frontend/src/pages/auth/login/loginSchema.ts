@@ -1,4 +1,4 @@
-import * as yup from 'yup'
+import * as yup from 'yup';
 
 export const loginSchema = yup.object({
   email: yup
@@ -9,6 +9,6 @@ export const loginSchema = yup.object({
     .string()
     .required('Password is required')
     .min(6, 'Password must be at least 6 characters'),
-})
+});
 
-export type LoginFormData = yup.InferType<typeof loginSchema>
+export type LoginFormData = yup.InferType<typeof loginSchema>;

@@ -1,10 +1,10 @@
-import { Button } from '@/components/ui/Button'
-import { Link } from 'react-router-dom'
-import { useHeader } from './useHeader'
+import { Button } from '@/components/ui/Button';
+import { Link } from 'react-router-dom';
+import { useHeader } from './useHeader';
 
 type AppHeaderProps = {
-  onOpenMobileNav: () => void
-}
+  onOpenMobileNav: () => void;
+};
 
 const Header = ({ onOpenMobileNav }: AppHeaderProps) => {
   const { onClickLogout } = useHeader();
@@ -29,10 +29,11 @@ const Header = ({ onOpenMobileNav }: AppHeaderProps) => {
         <div className="hidden items-center gap-2 md:flex">
           <Button type="button" onClick={onClickLogout}>
             Logout
-          </Button>        </div>
+          </Button>{' '}
+        </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

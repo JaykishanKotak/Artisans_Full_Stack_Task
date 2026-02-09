@@ -1,14 +1,13 @@
-import { useCallback, useState } from 'react'
-import { Outlet } from 'react-router-dom'
-import Header from './components/header/Header'
-import Sidebar from './components/sidebar/Sidebar'
-
+import { useCallback, useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import Header from './components/header/Header';
+import Sidebar from './components/sidebar/Sidebar';
 
 export function CommonLayout() {
-  const [mobileNavOpen, setMobileNavOpen] = useState(false)
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-  const openMobileNav = useCallback(() => setMobileNavOpen(true), [])
-  const closeMobileNav = useCallback(() => setMobileNavOpen(false), [])
+  const openMobileNav = useCallback(() => setMobileNavOpen(true), []);
+  const closeMobileNav = useCallback(() => setMobileNavOpen(false), []);
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -69,6 +68,5 @@ export function CommonLayout() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

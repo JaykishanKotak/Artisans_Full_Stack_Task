@@ -1,19 +1,21 @@
-import { useProfile } from './useProfile'
+import { useProfile } from './useProfile';
 import { Input } from '@/components/ui/Input';
 import { format } from 'date-fns';
 
 const Profile = () => {
-  const { userDetails } = useProfile()
+  const { userDetails } = useProfile();
   return (
     <div className="space-y-4">
       <div>
         <h1 className="text-xl font-semibold text-slate-900">Profile</h1>
-        <p className="text-sm text-slate-600">This is a placeholder profile page.</p>
+        <p className="text-sm text-slate-600">
+          This is a placeholder profile page.
+        </p>
       </div>
 
       <div className="mt-6 space-y-4">
         <Input
-          label='Email'
+          label="Email"
           id="email"
           type="email"
           placeholder="Email"
@@ -23,7 +25,7 @@ const Profile = () => {
         />
 
         <Input
-          label='User Id'
+          label="User Id"
           id="id"
           type="text"
           placeholder="Id"
@@ -33,7 +35,7 @@ const Profile = () => {
         />
 
         <Input
-          label='Name'
+          label="Name"
           id="name"
           type="text"
           placeholder="Name"
@@ -42,9 +44,8 @@ const Profile = () => {
           disabled
         />
 
-
         <Input
-          label='Hashed Password'
+          label="Hashed Password"
           id="hashedPassword"
           type="text"
           placeholder="Password"
@@ -59,14 +60,15 @@ const Profile = () => {
           label="Account Creation Date"
           placeholder="Account Created At"
           autoComplete="createdAt"
-          value={userDetails?.createdAt ? format(new Date(userDetails.createdAt), "MM/dd/yyyy") : ""}
+          value={
+            userDetails?.createdAt
+              ? format(new Date(userDetails.createdAt), 'MM/dd/yyyy')
+              : ''
+          }
           disabled
         />
       </div>
-
-
     </div>
-  )
-}
-export default Profile
-
+  );
+};
+export default Profile;

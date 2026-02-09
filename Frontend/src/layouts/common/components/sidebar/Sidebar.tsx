@@ -1,9 +1,9 @@
-import { NavLink } from 'react-router-dom'
-import { NAV_ITEMS } from '@/shared/config/nav'
+import { NavLink } from 'react-router-dom';
+import { NAV_ITEMS } from '@/shared/config/nav';
 
 type SideNavProps = {
-  onNavigate?: () => void
-}
+  onNavigate?: () => void;
+};
 
 const Sidebar = ({ onNavigate }: SideNavProps) => {
   return (
@@ -32,8 +32,7 @@ const Sidebar = ({ onNavigate }: SideNavProps) => {
         </NavLink>
       ))}
     </nav>
-  )
-}
+  );
+};
 
-export default Sidebar
-
+export default Sidebar;

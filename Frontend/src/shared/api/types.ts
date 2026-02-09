@@ -20,9 +20,8 @@ export type RegisterRequest = {
 };
 
 export type RegisterResponse = {
-    message: string;
+  message: string;
   status?: number;
-
 };
 
 export type User = {

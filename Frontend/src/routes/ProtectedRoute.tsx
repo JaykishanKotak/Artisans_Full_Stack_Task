@@ -1,19 +1,18 @@
-import type { ReactNode } from 'react'
-import { Navigate, useLocation } from 'react-router-dom'
-import { useAppSelector } from '@/app/hooks'
+import type { ReactNode } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import { useAppSelector } from '@/app/hooks';
 
 type ProtectedRouteProps = {
-    children: ReactNode
-}
+  children: ReactNode;
+};
 
 export function ProtectedRoute({ children }: ProtectedRouteProps) {
-    const token = useAppSelector((s) => s.auth.token)
-    const location = useLocation()
+  const token = useAppSelector((s) => s.auth.token);
+  const location = useLocation();
 
-    if (!token) {
-        return <Navigate to="/login" replace state={{ from: location }} />
-    }
+  if (!token) {
+    return <Navigate to="/login" replace state={{ from: location }} />;
+  }
 
-    return children
+  return children;
 }
-
